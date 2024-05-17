@@ -6,17 +6,14 @@
 \usage{
 download_osf_component(
   local_folder,
-  osf_component,
-  osf_node,
+  osf_component_id,
   local_directory = "local_data/osf_pull"
 )
 }
 \arguments{
 \item{local_folder}{A character vector specifying the folder(s) to save the downloaded data into. Will be used to add to argument 'local_directory'.}
 
-\item{osf_component}{A character vector specifying the corresponding node ID(s) for each component.}
-
-\item{osf_node}{An OSF project or (super-)component ID, which is the parent of the component(s) to download.}
+\item{osf_component_id}{A character vector specifying the corresponding node ID(s) for each component.}
 
 \item{local_directory}{The directory where data will be downloaded. Default is "local_data/osf_pull".}
 }
@@ -24,13 +21,12 @@ download_osf_component(
 No explicit return value. Data will be downloaded to the specified directory.
 }
 \description{
-This function is design to download all files from (at least) one OSF component.
+This function is design to simplify and help download files from OSF, especially from multiple OSF components (based on their ID) at once.
 }
 \examples{
 \dontrun{
 local_folder <- c("base")
-osf_component <- c("Base data")
-osf_node <- osfr::osf_retrieve_node("Your OSF project/component")
-download_osf_data(local_folder, osf_component, osf_node)
+osf_component <- c("jmipd")
+download_osf_data(local_folder, osf_component)
 }
 }
