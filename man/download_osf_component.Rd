@@ -2,7 +2,7 @@
 % Please edit documentation in R/download_osf_component.R
 \name{download_osf_component}
 \alias{download_osf_component}
-\title{Download data folder from OSF}
+\title{Download OSF Component}
 \usage{
 download_osf_component(
   local_folder,
@@ -11,22 +11,24 @@ download_osf_component(
 )
 }
 \arguments{
-\item{local_folder}{A character vector specifying the folder(s) to save the downloaded data into. Will be used to add to argument 'local_directory'.}
+\item{local_folder}{A character vector of local folder paths where the OSF components will be downloaded.}
 
-\item{osf_component_id}{A character vector specifying the corresponding node ID(s) for each component.}
+\item{osf_component_id}{A character vector of OSF component IDs corresponding to the local folders.}
 
-\item{local_directory}{The directory where data will be downloaded. Default is "local_data/osf_pull".}
-}
-\value{
-No explicit return value. Data will be downloaded to the specified directory.
+\item{local_directory}{A character string specifying the base local directory for the OSF pull. Default is "local_data/osf_pull".}
 }
 \description{
-This function is design to simplify and help download files from OSF, especially from multiple OSF components (based on their ID) at once.
+This function downloads components from the Open Science Framework (OSF) to a specified local directory.
+}
+\details{
+The function uses \code{purrr::walk2} to iterate over the \code{local_folder} and \code{osf_component_id} vectors, downloading each component to the corresponding local folder.
+If the specified local folder does not exist, it will be created. The function handles errors gracefully, printing a message if a download fails.
 }
 \examples{
 \dontrun{
-local_folder <- c("base")
-osf_component <- c("jmipd")
-download_osf_data(local_folder, osf_component)
+local_folders <- c("data/project1", "data/project2")
+osf_component_ids <- c("abc123", "def456")
+download_osf_component(local_folders, osf_component_ids)
 }
+
 }
