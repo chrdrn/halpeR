@@ -4,10 +4,10 @@
 \alias{pushover_status}
 \title{Send a Pushover Notification for Job Status}
 \usage{
-pushover_status(pushover_title, pushover_job, status)
+pushover_status(pushover_title = NULL, pushover_job, status)
 }
 \arguments{
-\item{pushover_title}{A character string specifying the title of the notification.}
+\item{pushover_title}{A character string specifying the title of the notification. Defaults to NULL.}
 
 \item{pushover_job}{A character string specifying the name of the job.}
 
@@ -19,10 +19,18 @@ Sends a Pushover notification and returns the response object.
 }
 \description{
 This function sends a Pushover notification indicating the status of a job.
+It relies heavily on the \code{pushoverr::pushover()} function and requires
+the same arguments to be defined to run properly.
+}
+\details{
+This function uses the \code{pushoverr::pushover()} function to send
+the notification. Ensure you have the \code{pushoverr} package installed and
+configured correctly with your Pushover user key and application token.
 }
 \examples{
 \dontrun{
 pushover_status("Job Notification", "Data Analysis", "started")
 pushover_status("Job Notification", "Data Analysis", "finished")
+pushover_status(NULL, "Data Analysis", "started")
 }
 }
